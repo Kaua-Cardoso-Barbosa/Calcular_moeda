@@ -1,18 +1,15 @@
 from flask import Flask, render_template, request
-
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     return render_template('index.html')
 @app.route('/conversor_de_moedas', methods=['POST'])
-def conversor():
+def conversor_de_moedas():
     try:
-        conversor = float(request.form['Converter'])
+        conversor = float(request.form['conversor'])
         dolar_atual = 5.69
-        converter = float(dolar_atual/conversor)
-
-
+        converter = round((conversor/dolar_atual),2)
         return render_template('index.html',converter=converter)
     except Exception as e:
         converter = f'Ocorreu um erro inesperado {e}'
